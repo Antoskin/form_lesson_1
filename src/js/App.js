@@ -6,6 +6,7 @@ export class App {
         this.options = options
         this.isRegistered = this.options?.isRegistered
 
+        this.update = this.update.bind(this)
         // this.initComponent()
     }
 
@@ -17,13 +18,23 @@ export class App {
         //console.log(this.step)
     }    
 
+    update() {
+        const child = this.root.children[0]
+
+        this.root.removeChild(child)
+        this.step++
+        this.render()
+    }
+
     initComponent() {
         const Component = this.getRequiredComponent()
 
         const componentWrapper = document.createElement('div')
         componentWrapper.classList.add(Component.className)
 
-        const component = new Component({ options: this.options })
+        const options = Object.assign(this.options, {update: this.update})
+
+        const component = new Component({ options })
 
         componentWrapper.append(component.toHtml())
 

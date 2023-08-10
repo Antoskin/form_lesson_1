@@ -35,6 +35,8 @@ export class Form {
         //console.log('users', users)
 
         localStorage.setItem('users', JSON.stringify(newUserList))
+
+        this.options.update()
     }
 
     toHtml() {
