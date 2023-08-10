@@ -7,15 +7,19 @@ function checkUserId() {
 
     const storagedUsers = localStorage.getItem('users');
 
-    const users = JSON.parse(storagedUsers)
+    if (storagedUsers) {
+        const users = JSON.parse(storagedUsers)
 
-    const isExist = users.find(user => user.HashedID === HashedID);
-
-    if (isExist) {
-        isRegistered = true
+        const isExist = users.find(user => user.HashedID === HashedID);
+    
+        if (isExist) {
+            isRegistered = true
+        }
     }
 
-    return { isRegistered }
+    
+
+    return { isRegistered, HashedID }
 
 }
 

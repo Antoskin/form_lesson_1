@@ -1,8 +1,8 @@
 import templateForm from "./template";
 
 export class Form {
-    constructor() {
-
+    constructor({options}) {
+        this.options = options
     }
 
     static id = 0
@@ -11,6 +11,30 @@ export class Form {
     onSubmit(e) {
         e.preventDefault()
 
+        const data = new FormData(e.target)
+
+        const newUser = {
+            HashedID: this.options.HashedID,
+            name: data.get('name'),
+            lastName: data.get('surname')
+        }
+
+        let newUserList;
+
+        const storagedUsers = localStorage.getItem('users');
+        // console.log('storagedUsers', storagedUsers)
+
+        if (storagedUsers) {
+            const users = JSON.parse(storagedUsers)
+
+            newUserList = [...users, newUser]
+        } else {
+            newUserList = [newUser]
+        }
+
+        //console.log('users', users)
+
+        localStorage.setItem('users', JSON.stringify(newUserList))
     }
 
     toHtml() {

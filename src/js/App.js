@@ -3,7 +3,8 @@ export class App {
         this.step = 0
         this.root = root
         this.components = components
-        this.isRegistered = options?.isRegistered
+        this.options = options
+        this.isRegistered = this.options?.isRegistered
 
         // this.initComponent()
     }
@@ -22,7 +23,7 @@ export class App {
         const componentWrapper = document.createElement('div')
         componentWrapper.classList.add(Component.className)
 
-        const component = new Component()
+        const component = new Component({ options: this.options })
 
         componentWrapper.append(component.toHtml())
 

@@ -16,12 +16,13 @@ function DomLoaded() {
 
 //    localStorage.setItem('users', JSON.stringify(testUser))
 
-    const {isRegistered} = checkUserId()
+    const {isRegistered, HashedID} = checkUserId()
 
-    //console.log('isRegistered', isRegistered)
+    // console.log('isRegistered', isRegistered)
+    // console.log('HashedID ', HashedID)
     const root = document.getElementById('app')
 
-    const app = new App({root, components: [Form, Payments], options: {isRegistered} })
+    const app = new App({root, components: [Form, Payments], options: {isRegistered, HashedID} })
 
     app.render()
 }
