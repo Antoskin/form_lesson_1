@@ -1,5 +1,7 @@
 import {checkUserId} from './js/actions';
 import { App } from './js/App';
+import { Form } from './js/components/form';
+import { Payments } from './js/components/payments';
 
 // const testUser = [
 //     {
@@ -19,7 +21,9 @@ function DomLoaded() {
     //console.log('isRegistered', isRegistered)
     const root = document.getElementById('app')
 
-    const app = new App({root, components: [], options: {isRegistered} })
+    const app = new App({root, components: [Form, Payments], options: {isRegistered} })
+
+    app.render()
 }
 
 window.addEventListener('load', DomLoaded)

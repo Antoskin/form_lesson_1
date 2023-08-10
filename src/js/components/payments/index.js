@@ -11,6 +11,6 @@ export class Payments {
     toHtml() {
         const payments = templatePayments()
 
-        return payments()
+        return payments
     }
 }
