@@ -7,4 +7,34 @@ const getUrlParams = () => {
     return HashedID
 }
 
-export { getUrlParams }
+function storageController() {
+    const USER_STORAGE = 'users';
+    const storagedUsers = localStorage.getItem(USER_STORAGE);
+
+    const getUsersArr = () => {
+        return storagedUsers ? JSON.parse(storagedUsers): [];
+    }
+
+    const isExists = (HashedID) => {
+        const users = getUsersArr();
+    
+        const notEmpty = users.find(user => user.HashedID === HashedID);
+    
+        return notEmpty ? true: false;
+    }
+
+    function onSave(newUser) {
+        let list = [];
+
+        const users = getUsersArr();
+
+        list = users.length >= 1 ? [...users, newUser] : [newUser];
+
+        localStorage.setItem(USER_STORAGE, JSON.stringify(list))
+    }
+
+    return {onSave, isExists}
+}
+
+
+export { getUrlParams, storageController }

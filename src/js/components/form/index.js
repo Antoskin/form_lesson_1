@@ -1,3 +1,4 @@
+import { storageController } from "../../utils";
 import templateForm from "./template";
 
 export class Form {
@@ -19,23 +20,8 @@ export class Form {
             lastName: data.get('surname')
         }
 
-        let newUserList;
-
-        const storagedUsers = localStorage.getItem('users');
-        // console.log('storagedUsers', storagedUsers)
-
-        if (storagedUsers) {
-            const users = JSON.parse(storagedUsers)
-
-            newUserList = [...users, newUser]
-        } else {
-            newUserList = [newUser]
-        }
-
-        //console.log('users', users)
-
-        localStorage.setItem('users', JSON.stringify(newUserList))
-
+        storageController().onSave(newUser)
+        
         this.options.update()
     }
 

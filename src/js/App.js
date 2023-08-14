@@ -39,7 +39,6 @@ export class App {
         componentWrapper.append(component.toHtml())
 
         return componentWrapper;
-
     }
 
     render() {
