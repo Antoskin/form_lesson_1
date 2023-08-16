@@ -2,6 +2,7 @@ import {checkUserId} from './js/actions';
 import { App } from './js/App';
 import { Form } from './js/components/form';
 import { Payments } from './js/components/payments';
+import Amount from './js/components/amount';
 
 // const testUser = [
 //     {
@@ -22,7 +23,7 @@ function DomLoaded() {
     // console.log('HashedID ', HashedID)
     const root = document.getElementById('app')
 
-    const app = new App({root, components: [Form, Payments], options: {isRegistered, HashedID} })
+    const app = new App({root, components: [Form, Payments, Amount], options: {isRegistered, HashedID} })
 
     app.render()
 }

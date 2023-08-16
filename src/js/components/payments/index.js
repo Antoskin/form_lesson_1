@@ -10,7 +10,7 @@ export class Payments {
     static className = 'pay'
 
     onClick({ target }) {
-        this.options.card = target.dataset.id;
+        this.options.paymentType = target.dataset.id;
         this.options.update()
     }
 

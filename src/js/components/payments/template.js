@@ -2,12 +2,12 @@ import './style.scss';
 
 const payList = [
     {
-        id: 'visa',
-        name: 'Visa'
+        id: 'card',
+        name: 'Credit card'
     },
     {
-        id: 'mc',
-        name: 'Master Card'
+        id: 'crypto',
+        name: 'Crypto'
     },
 ]
 
