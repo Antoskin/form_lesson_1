@@ -36,5 +36,4 @@ function storageController() {
     return {onSave, isExists}
 }
 
-
 export { getUrlParams, storageController }
