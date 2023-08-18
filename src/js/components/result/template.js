@@ -1,23 +1,16 @@
 
-const templateCard = () => {
+function templateCard() {
+
+    const {HashedID, paymentType, amount, cardNumber} = this.options;
+
     const wrap = document.createElement('div')
     wrap.classList.add('card')
 
     const _html = (`
-        <div class="btn-group-vertical" role="group" aria-label="">
-            <button type="button" class="btn btn-secondary">First One</button>
-            <button type="button" class="btn btn-secondary">Second One</button>
-            <div class="btn-group" role="group">
-                <button id="dropdownId" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        More
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="#">First Dropdown</a>
-                    <a class="dropdown-item" href="#">Second Dropdown</a>
-                </div>
-            </div>
-        </div>
+        <div>User ID: <span>${HashedID}</span></div>
+        <div>Payment type: <span>${paymentType}</span></div>
+        <div>Amount: <span>${amount}</span></div>
+        <div class="${cardNumber || 'd-none'}">Card number: <span>${cardNumber}</span></div>
     `);
 
     wrap.innerHTML = _html
