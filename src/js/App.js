@@ -1,21 +1,18 @@
 export class App {
     constructor({root, components, options}) {
-        this.step = 2
+        this.step = 0
         this.root = root
         this.components = components
         this.options = options
         this.isRegistered = this.options?.isRegistered
 
         this.update = this.update.bind(this)
-        // this.initComponent()
     }
 
     getRequiredComponent() {
         this.isRegistered && this.step === 0 && this.step ++;
 
         return this.components.find(Component => Component.id === this.step)
-
-        //console.log(this.step)
     }    
 
     update() {

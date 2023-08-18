@@ -1,8 +1,10 @@
 import templateAmount from './template';
-
-class Amount {
-    constructor({options}) {
+import { getFields } from '../../utils';
+ 
+export class Amount {
+    constructor({ options }) {
         this.options = options
+        this.template = templateAmount
     }
 
     static id = 2
@@ -11,20 +13,20 @@ class Amount {
     onSubmit(e) {
         e.preventDefault()
         
-        const data = new FormData(e.target)
+        const { amount: { value }, cardNumber} = getFields(e.target)
 
-        this.options.amount = data.get('amount');
+        this.options.amount = value;
+
+        cardNumber && ( this.options.cardNumber = cardNumber.value);
 
         this.options.update()
     }
 
     toHtml() {
-        const $amount = templateAmount();
+        const $amount = this.template();
 
         $amount.addEventListener('submit', this.onSubmit.bind(this))
 
         return $amount
     }
 }
-
-export default Amount;

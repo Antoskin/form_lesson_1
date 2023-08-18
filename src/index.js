@@ -2,28 +2,21 @@ import {checkUserId} from './js/actions';
 import { App } from './js/App';
 import { Form } from './js/components/form';
 import { Payments } from './js/components/payments';
-import Amount from './js/components/amount';
-
-// const testUser = [
-//     {
-//         HashedID: '123',
-//         name: 'John',
-//         lastName: 'Gold'
-//     }
-// ]
+import { Amount } from './js/components/amount';
+import { Result } from './js/components/result';
 
 function DomLoaded() {
-    //console.log('loaded')
-
-//    localStorage.setItem('users', JSON.stringify(testUser))
-
     const {isRegistered, HashedID} = checkUserId()
 
-    // console.log('isRegistered', isRegistered)
-    // console.log('HashedID ', HashedID)
     const root = document.getElementById('app')
 
-    const app = new App({root, components: [Form, Payments, Amount], options: {isRegistered, HashedID} })
+    const components = [Form, Payments, Amount, Result];
+
+    const app = new App({
+        root, 
+        components, 
+        options: { isRegistered, HashedID } 
+    })
 
     app.render()
 }

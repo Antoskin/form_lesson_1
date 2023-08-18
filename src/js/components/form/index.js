@@ -1,4 +1,4 @@
-import { storageController } from "../../utils";
+import { getFields, storageController } from "../../utils";
 import templateForm from "./template";
 
 export class Form {
@@ -12,15 +12,13 @@ export class Form {
     onSubmit(e) {
         e.preventDefault()
 
-        const data = new FormData(e.target)
+        const { onSave } = storageController();
 
-        const newUser = {
-            HashedID: this.options.HashedID,
-            name: data.get('name'),
-            lastName: data.get('surname')
-        }
+        const { HashedID } = this.options;
 
-        storageController().onSave(newUser)
+        const { name: { value: name }, surname: { value: lastName } } = getFields(e.target);
+
+        onSave({ HashedID, name, lastName })
         
         this.options.update()
     }

@@ -36,4 +36,16 @@ function storageController() {
     return {onSave, isExists}
 }
 
-export { getUrlParams, storageController }
+const getFields = (data) => {
+    let res = {}
+
+    const formData = new FormData(data);
+
+    for (const [key, value] of formData) {
+        res = {...res, [key]: {'value': value}}
+    }
+
+    return res
+}
+
+export { getUrlParams, storageController, getFields }
