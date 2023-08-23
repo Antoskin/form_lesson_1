@@ -1,5 +1,6 @@
 import Timer from './timer';
-import { templateCard } from './template';
+import { templateCard, templateCanvas } from './template';
+import { generateQRCode } from '../../utils';
 
 export class Result {
     constructor({options}) {
@@ -11,10 +12,18 @@ export class Result {
     static id = 3
     static className = 'res'
 
-    toHtml() {
-        const template = this.tempate()
+    drawQr(template) {
+        const canvas = templateCanvas();    
+        template.prepend(canvas)
+        generateQRCode(canvas)
+    }
 
-        template.append(this.timer.toHtml())
+    toHtml() {
+        const template = this.tempate();
+
+        template.append(this.timer.toHtml());
+
+        this.options.paymentType === 'crypto' && this.drawQr(template);
 
         return template;
     }

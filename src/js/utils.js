@@ -1,3 +1,6 @@
+import QRCode from "qrcode";
+import {v4 as uuidv4} from 'uuid';
+
 const getUrlParams = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString)
@@ -54,4 +57,19 @@ function millisToMinutesAndSeconds(millis) {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-export { getUrlParams, storageController, getFields, millisToMinutesAndSeconds }
+const generateQRCode = (canvas) => {
+
+    const wallet = uuidv4()
+
+    QRCode.toCanvas(canvas, wallet, function(error) {
+        if (error) {
+            console.log(error)
+            return null;
+        }
+
+        console.log('success')
+    })
+
+}
+
+export { getUrlParams, storageController, getFields, millisToMinutesAndSeconds, generateQRCode }

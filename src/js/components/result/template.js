@@ -32,3 +32,9 @@ export const templateTimer = (time) => {
 
     return {root, timer};
 } 
+
+export const templateCanvas = () => {
+    const canvas = document.createElement('canvas');
+
+    return canvas
+}
