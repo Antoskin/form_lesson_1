@@ -12,8 +12,6 @@ export class App {
     getRequiredComponent() {
         this.isRegistered && this.step === 0 && this.step ++;
 
-        console.log(this.step)
-
         return this.components.find(Component => Component.id === this.step)
     }    
 

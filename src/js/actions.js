@@ -1,4 +1,5 @@
 import { getUrlParams, storageController } from "./utils"
+import {v4 as uuidv4} from 'uuid';
 
 function checkUserId() {
     let isRegistered = false;
@@ -10,4 +11,10 @@ function checkUserId() {
     return { isRegistered, HashedID }
 }
 
-export { checkUserId }
+const fetchWallet = () => {
+    const wallet = uuidv4()
+
+    return wallet;
+}
+
+export { checkUserId, fetchWallet }

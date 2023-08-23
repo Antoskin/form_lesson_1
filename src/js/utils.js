@@ -1,5 +1,4 @@
 import QRCode from "qrcode";
-import {v4 as uuidv4} from 'uuid';
 
 const getUrlParams = () => {
     const queryString = window.location.search;
@@ -57,10 +56,7 @@ function millisToMinutesAndSeconds(millis) {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
-const generateQRCode = (canvas) => {
-
-    const wallet = uuidv4()
-
+const generateQRCode = (canvas, wallet) => {
     QRCode.toCanvas(canvas, wallet, function(error) {
         if (error) {
             console.log(error)
@@ -69,6 +65,8 @@ const generateQRCode = (canvas) => {
 
         console.log('success')
     })
+
+    return wallet;
 }
 
 function getModal({ root, template, text, onClose }) {

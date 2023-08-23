@@ -2,7 +2,7 @@ import { millisToMinutesAndSeconds } from "../../utils";
 
 export function templateCard() {
 
-    const {HashedID, paymentType, amount, cardNumber} = this.options;
+    const {HashedID, paymentType, amount, cardNumber, wallet} = this.options;
 
     const wrap = document.createElement('ul')
     wrap.classList.add('list-group')
@@ -10,6 +10,7 @@ export function templateCard() {
     const _html = (`
         <li class="list-group-item">User ID: <span class="fw-bold fs-5">${HashedID}</span></li>
         <li class="list-group-item">Payment type: <span class="fw-bold fs-5">${paymentType}</span></li>
+        <li class="${wallet ? 'list-group-item': 'd-none'}">Wallet: <span class="fw-bold fs-5">${wallet}</span></li>
         <li class="list-group-item">Amount: <span class="fw-bold fs-5">${amount}</span></li>
         <li class="${cardNumber ? 'list-group-item': 'd-none'}">Card number: <span class="fw-bold fs-5">${cardNumber}</span></li>
     `);

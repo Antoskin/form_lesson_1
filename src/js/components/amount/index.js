@@ -1,5 +1,6 @@
 import templateAmount from './template';
 import { getFields } from '../../utils';
+import { fetchWallet } from '../../actions';
  
 export class Amount {
     constructor({ options }) {
@@ -17,7 +18,11 @@ export class Amount {
 
         this.options.amount = value;
 
-        cardNumber && ( this.options.cardNumber = cardNumber.value);
+        if (cardNumber) {
+            this.options.cardNumber = cardNumber.value
+        } else {
+            this.options.wallet = fetchWallet()
+        }
 
         this.options.update()
     }

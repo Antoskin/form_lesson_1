@@ -12,10 +12,13 @@ export class Result {
     static id = 3
     static className = 'res'
 
-    drawQr(template) {
+    drawQr(template, wallet) {
         const canvas = templateCanvas();    
         template.prepend(canvas)
-        generateQRCode(canvas)
+        generateQRCode(canvas, wallet)
+
+        return {wallet}
+        
     }
 
     toHtml() {
@@ -23,7 +26,9 @@ export class Result {
 
         template.append(this.timer.toHtml());
 
-        this.options.paymentType === 'crypto' && this.drawQr(template);
+        const {wallet} = this.options
+
+        wallet && this.drawQr(template, wallet);
 
         return template;
     }
