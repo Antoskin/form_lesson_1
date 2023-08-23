@@ -4,14 +4,14 @@ export function templateCard() {
 
     const {HashedID, paymentType, amount, cardNumber} = this.options;
 
-    const wrap = document.createElement('div')
-    wrap.classList.add('card')
+    const wrap = document.createElement('ul')
+    wrap.classList.add('list-group')
 
     const _html = (`
-        <div>User ID: <span>${HashedID}</span></div>
-        <div>Payment type: <span>${paymentType}</span></div>
-        <div>Amount: <span>${amount}</span></div>
-        <div class="${cardNumber || 'd-none'}">Card number: <span>${cardNumber}</span></div>
+        <li class="list-group-item">User ID: <span class="fw-bold fs-5">${HashedID}</span></li>
+        <li class="list-group-item">Payment type: <span class="fw-bold fs-5">${paymentType}</span></li>
+        <li class="list-group-item">Amount: <span class="fw-bold fs-5">${amount}</span></li>
+        <li class="${cardNumber ? 'list-group-item': 'd-none'}">Card number: <span class="fw-bold fs-5">${cardNumber}</span></li>
     `);
 
     wrap.innerHTML = _html
@@ -22,6 +22,8 @@ export function templateCard() {
 export const templateTimer = (time) => {
     const root = document.createElement('div');
     root.classList.add('timer')
+    root.classList.add('mt-3')
+
     root.innerText = 'This invoice will expire in ';
 
     const timer = document.createElement('span')

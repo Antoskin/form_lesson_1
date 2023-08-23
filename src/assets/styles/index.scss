@@ -1,3 +1,4 @@
+@import '~bootstrap';
 
 * {
   font-family: 'montserrat-regular', sans-serif;
@@ -27,4 +28,11 @@ body {
 
 .d-none {
   display: none;
+}
+
+.timer span {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  //åcolor: white;
 }

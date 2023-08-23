@@ -1,6 +1,6 @@
 export class App {
     constructor({root, components, options}) {
-        this.step = 0
+        this.step = 3
         this.root = root
         this.components = components
         this.options = options

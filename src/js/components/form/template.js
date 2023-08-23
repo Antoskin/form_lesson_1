@@ -3,9 +3,9 @@ const templateForm = () => {
     $form.classList.add('form')
 
     $form.innerHTML = (`
-        <input type="text" name="name" class="form_field" placeholder="name" required />
-        <input type="text" name="surname" class="form_field" placeholder="last name" required />
-        <button class="form_submit">submit<button/>
+        <input type="text" name="name" class=" form-control mb-3" placeholder="name" required />
+        <input type="text" name="surname" class=" form-control mb-3" placeholder="last name" required />
+        <button class=" btn btn-info">Submit</button>
     `)
     
     return $form;

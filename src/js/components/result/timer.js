@@ -5,7 +5,7 @@ class Timer {
     constructor(options) {
         this.options = options;
         this.timerRoot = null;
-        this.timeRange = 5000
+        this.timeRange = 180000
         this.templateTimer = templateTimer
 
         this.toHtml = this.toHtml.bind(this)
@@ -16,7 +16,7 @@ class Timer {
         const interval = setInterval(() => {
 
             if (this.timeRange === 0) {
-                clearInterval(interval);
+                clearInterval(interval)
                 this.options.update();
             }
 
