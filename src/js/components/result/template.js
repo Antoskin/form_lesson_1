@@ -1,5 +1,6 @@
+import { millisToMinutesAndSeconds } from "../../utils";
 
-function templateCard() {
+export function templateCard() {
 
     const {HashedID, paymentType, amount, cardNumber} = this.options;
 
@@ -18,4 +19,16 @@ function templateCard() {
     return wrap;
 }
 
-export default templateCard;
+export const templateTimer = (time) => {
+    const root = document.createElement('div');
+    root.classList.add('timer')
+    root.innerText = 'This invoice will expire in ';
+
+    const timer = document.createElement('span')
+    timer.innerText = millisToMinutesAndSeconds(time)
+
+    root.append(timer)
+    
+
+    return {root, timer};
+} 
