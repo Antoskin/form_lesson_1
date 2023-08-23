@@ -20,7 +20,7 @@ const templatePayments = () => {
         card.classList.add('payments_card')
 
         card.innerHTML = (`
-            <div class="payments_card__wrap" data-id="${id}">
+            <div class="payments_card__wrap shadow" data-id="${id}">
                 <div class="payments_card__ico">ico</div>
                 <div class="payments_card__name">${name}</div>
             </div>

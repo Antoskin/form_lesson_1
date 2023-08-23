@@ -69,7 +69,18 @@ const generateQRCode = (canvas) => {
 
         console.log('success')
     })
-
 }
 
-export { getUrlParams, storageController, getFields, millisToMinutesAndSeconds, generateQRCode }
+function getModal({ root, template, text, onClose }) {
+
+    const onShow = () => {
+        const modal = template(text, onClose)
+        root.parentNode.append(modal)
+        modal.classList.add('slow-show')
+
+    }
+
+    return { onShow }
+}
+
+export { getUrlParams, storageController, getFields, millisToMinutesAndSeconds, generateQRCode, getModal }

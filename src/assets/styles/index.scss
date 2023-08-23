@@ -34,5 +34,47 @@ body {
   display: inline-block;
   width: 50px;
   text-align: center;
-  //åcolor: white;
+}
+
+.mdl {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 300px;
+  height: 200px;
+  z-index: 10;
+}
+
+.slow-show {
+  animation: .3s ease-in show;
+}
+
+@keyframes show {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.reg, .pay, .amt, .res, .exp {
+  opacity: 0;
+  animation: ani 1.5s forwards;
+}
+
+@keyframes ani {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

@@ -1,9 +1,13 @@
-import { getFields, storageController } from "../../utils";
-import templateForm from "./template";
+import { getFields, storageController, getModal } from "../../utils";
+import {templateForm, templateModal as template} from "./template";
+
+
+
 
 export class Form {
     constructor({options}) {
         this.options = options
+        this.form = null;
     }
 
     static id = 0
@@ -20,14 +24,24 @@ export class Form {
 
         onSave({ HashedID, name, lastName })
         
-        this.options.update()
+
+        const options = { 
+            root: this.form, 
+            template,
+            text: 'success !!!!', 
+            onClose: () => this.options.update() 
+        }
+
+        const modal = getModal(options)
+
+        modal.onShow()
     }
 
     toHtml() {
-        const form = templateForm()
+        this.form = templateForm()
 
-        form.addEventListener('submit', (e) => this.onSubmit(e))
+        this.form.addEventListener('submit', (e) => this.onSubmit(e))
 
-        return form
+        return this.form
     }
 }

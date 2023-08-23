@@ -3,7 +3,7 @@
 .payments {
 
     &_card {
-        background-color: rgba(233, 227, 227, 0.377);
+        background-color: rgba(233, 227, 227, 0.058);
         border-radius: 7px;
     }
 
@@ -11,6 +11,8 @@
         display: grid;
         grid-template-columns: 1fr 150px;
         gap: 10px;
+
+        border-radius: 7px;
         
         margin-bottom: 20px;
         padding: 5px;
