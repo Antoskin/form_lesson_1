@@ -1,9 +1,6 @@
 import { getFields, storageController, getModal } from "../../utils";
 import {templateForm, templateModal as template} from "./template";
 
-
-
-
 export class Form {
     constructor({options}) {
         this.options = options
@@ -15,26 +12,20 @@ export class Form {
 
     onSubmit(e) {
         e.preventDefault()
-
-        const { onSave } = storageController();
-
-        const { HashedID } = this.options;
-
-        const { name: { value: name }, surname: { value: lastName } } = getFields(e.target);
-
-        onSave({ HashedID, name, lastName })
         
+        const { name: { value: name }, surname: { value: lastName }, email: { value: email } } = getFields(e.target);
+        
+        const { HashedID } = this.options;
+        const { onSave } = storageController();
+        
+        const { isError } = onSave({ HashedID, name, lastName, email })
 
-        const options = { 
-            root: this.form, 
-            template,
-            text: 'success !!!!', 
-            onClose: () => this.options.update() 
-        }
+        const modal = getModal({root: this.form, template})
 
-        const modal = getModal(options)
-
-        modal.onShow()
+        modal.onShow({
+            text: isError ? isError : 'success !!!!', 
+            onClose: isError ? () => modal.onCLose(): () => this.options.update() 
+        })
     }
 
     toHtml() {

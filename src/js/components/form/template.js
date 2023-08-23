@@ -3,6 +3,7 @@ export const templateForm = () => {
     $form.classList.add('form')
 
     $form.innerHTML = (`
+        <input type="text" name="email" class=" form-control mb-3" placeholder="email" required />
         <input type="text" name="name" class=" form-control mb-3" placeholder="name" required />
         <input type="text" name="surname" class=" form-control mb-3" placeholder="last name" required />
         <button class=" btn btn-info">Submit</button>
@@ -11,7 +12,7 @@ export const templateForm = () => {
     return $form;
 }
 
-export const templateModal = (text, onClose) => {
+export const templateModal = ({text, onClose}) => {
     const modal = document.createElement('div')
     modal.classList.add('mdl')
     modal.classList.add('shadow')

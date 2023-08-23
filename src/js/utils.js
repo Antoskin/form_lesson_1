@@ -25,14 +25,36 @@ function storageController() {
         return notEmpty ? true: false;
     }
 
+    const checkEmail = (email) => {
+        const users = getUsersArr();
+
+        if (users.length === 0) {
+            return false
+        }
+    
+        const isMatch = users.find(user => user?.email === email);
+
+
+        return isMatch?.email ? 'email is exists already' : false;
+        
+    }
+
     function onSave(newUser) {
         let list = [];
 
+        let isError = false;
+
         const users = getUsersArr();
 
-        list = users.length >= 1 ? [...users, newUser] : [newUser];
+        isError = checkEmail(newUser.email)
 
-        localStorage.setItem(USER_STORAGE, JSON.stringify(list))
+        if (!isError) {
+            list = users.length >= 1 ? [...users, newUser] : [newUser];
+
+            localStorage.setItem(USER_STORAGE, JSON.stringify(list))
+        }
+
+        return { isError }
     }
 
     return {onSave, isExists}
@@ -69,16 +91,26 @@ const generateQRCode = (canvas, wallet) => {
     return wallet;
 }
 
-function getModal({ root, template, text, onClose }) {
+function getModal({ root, template }) {
 
-    const onShow = () => {
-        const modal = template(text, onClose)
+    const onShow = ({ text, onClose }) => {
+        const modal = template({ text, onClose })
         root.parentNode.append(modal)
         modal.classList.add('slow-show')
-
     }
 
-    return { onShow }
+    const onCLose = () => {
+        const _root = root.parentNode
+
+        _root.lastChild.classList.add('slow-hide')
+
+        const delay = setTimeout(() => {
+            clearTimeout(delay);
+            _root.removeChild(_root.lastChild)
+        }, 300)
+    }
+
+    return { onShow, onCLose }
 }
 
 export { getUrlParams, storageController, getFields, millisToMinutesAndSeconds, generateQRCode, getModal }

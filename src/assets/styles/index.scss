@@ -56,6 +56,10 @@ body {
   animation: .3s ease-in show;
 }
 
+.slow-hide {
+  animation: .3s ease-in hide;
+}
+
 @keyframes show {
   from {
     transform: translateY(-20px);
@@ -65,6 +69,18 @@ body {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes hide {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(20px);
+    opacity: 0;
   }
 }
 
