@@ -11,9 +11,10 @@ const payList = [
     },
 ]
 
-const templatePayments = () => {
+function templatePayments() {
     const payment = document.createElement('div')
     payment.classList.add('payments')
+    payment.addEventListener('click', this.onClick)
 
     payList.forEach(({id, name}) => {
         const card = document.createElement('div')

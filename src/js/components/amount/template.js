@@ -1,13 +1,11 @@
 import IMask from "imask"
 
 function templateAmount() {
+    const { onSubmit, options: { paymentType } } = this;
+
     const wrap = document.createElement('form')
-
-    Object.assign(wrap, {
-        className: 'amount d-flex align-items-center'
-    })
-
-    const { paymentType } = this.options
+    wrap.addEventListener('submit', onSubmit)
+    Object.assign(wrap, { className: 'amount d-flex align-items-center' })
 
     wrap.innerHTML = (`
         <span class="me-3">
@@ -17,23 +15,26 @@ function templateAmount() {
     `)
 
     if (paymentType === 'card') {
-        const _number = document.createElement('input');
-
-        Object.assign(_number, {
-            name: 'cardNumber',
-            className: 'form-control me-3',
-            placeholder: "0000-0000-0000-0000",
-            required: true,
-        })
-
-        IMask(_number, { mask: '0000-0000-0000-0000' })
-
-        wrap.prepend(_number)    
+        wrap.prepend(cardInput())    
     }
     
-
     return wrap
 
+}
+
+const cardInput = () => {
+    const _number = document.createElement('input');
+
+    Object.assign(_number, {
+        name: 'cardNumber',
+        className: 'form-control me-3',
+        placeholder: "0000-0000-0000-0000",
+        required: true,
+    })
+
+    IMask(_number, { mask: '0000-0000-0000-0000' })
+
+    return _number;
 }
 
 export default templateAmount;

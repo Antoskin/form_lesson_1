@@ -3,7 +3,11 @@ import templatePayments from "./template"
 export class Payments {
     constructor({options}) {
         this.options = options
+        this.template = templatePayments;
 
+        console.log(Payments.id)
+
+        this.onClick = this.onClick.bind(this)
     }
 
     static id = 1
@@ -15,10 +19,6 @@ export class Payments {
     }
 
     toHtml() {
-        const payments = templatePayments()
-
-        payments.addEventListener('click', this.onClick.bind(this))
-
-        return payments
+        return this.template()
     }
 }
