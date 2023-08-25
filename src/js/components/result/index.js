@@ -16,9 +16,7 @@ export class Result {
         const canvas = templateCanvas();    
         template.prepend(canvas)
         generateQRCode(canvas, wallet)
-
-        return {wallet}
-        
+    
     }
 
     toHtml() {

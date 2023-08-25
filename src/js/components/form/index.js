@@ -10,6 +10,15 @@ export class Form {
     static id = 0
     static className = 'reg'
 
+    showModal(isError) {
+        const {onShow, onCLose} = getModal({root: this.form, template})
+
+        onShow({
+            text: isError ? isError : 'success !!!!', 
+            onClose: isError ? onCLose: this.options.update
+        })
+    }
+
     onSubmit(e) {
         e.preventDefault()
         
@@ -19,13 +28,8 @@ export class Form {
         const { onSave } = storageController();
         
         const { isError } = onSave({ HashedID, name, lastName, email })
-
-        const modal = getModal({root: this.form, template})
-
-        modal.onShow({
-            text: isError ? isError : 'success !!!!', 
-            onClose: isError ? () => modal.onCLose(): () => this.options.update() 
-        })
+        
+        this.showModal(isError)
     }
 
     toHtml() {

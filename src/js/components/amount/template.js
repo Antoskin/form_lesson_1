@@ -1,3 +1,5 @@
+import IMask from "imask"
+
 function templateAmount() {
     const wrap = document.createElement('form')
 
@@ -18,18 +20,17 @@ function templateAmount() {
         const _number = document.createElement('input');
 
         Object.assign(_number, {
-            type: 'number',
             name: 'cardNumber',
             className: 'form-control me-3',
-            placeholder: "xxxx xxxx xxxx xxxx",
+            placeholder: "0000-0000-0000-0000",
             required: true,
         })
 
+        IMask(_number, { mask: '0000-0000-0000-0000' })
 
-
-
-        wrap.prepend(_number)
+        wrap.prepend(_number)    
     }
+    
 
     return wrap
 
