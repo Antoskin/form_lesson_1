@@ -4,13 +4,12 @@ export class App {
         this.root = root
         this.components = components
         this.options = options
-        this.isRegistered = this.options?.isRegistered
 
         this.update = this.update.bind(this)
     }
 
     getRequiredComponent() {
-        this.isRegistered && this.step === 0 && this.step ++;
+        this.options.isRegistered && this.step === 0 && this.step ++;
 
         return this.components.find(Component => Component.id === this.step)
     }    
@@ -31,14 +30,14 @@ export class App {
 
         const options = Object.assign(this.options, {update: this.update})
 
-        const component = new Component({ options })
+        const component = new Component({ root: componentWrapper, options })
 
         componentWrapper.append(component.toHtml())
 
-        return componentWrapper;
+        return componentWrapper
     }
 
     render() {
-        this.root.append(this.initComponent())
+        this.root.prepend(this.initComponent())
     }
 }

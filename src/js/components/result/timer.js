@@ -5,7 +5,7 @@ class Timer {
     constructor(options) {
         this.options = options;
         this.timerRoot = null;
-        this.timeRange = 180000
+        this.timeRange = 5000
         this.templateTimer = templateTimer
 
         this.toHtml = this.toHtml.bind(this)

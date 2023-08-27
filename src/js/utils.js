@@ -95,19 +95,19 @@ function getModal({ root, template }) {
 
     const onShow = ({ text, onClose }) => {
         const modal = template({ text, onClose })
-        root.parentNode.append(modal)
+        root.append(modal)
         modal.classList.add('slow-show')
     }
 
     const onCLose = () => {
-        const _root = root.parentNode
-
-        _root.lastChild.classList.add('slow-hide')
+        root.lastChild.classList.add('slow-hide')
 
         const delay = setTimeout(() => {
             clearTimeout(delay);
-            _root.removeChild(_root.lastChild)
+            root.removeChild(root.lastChild)
         }, 300)
+
+        
     }
 
     return { onShow, onCLose }

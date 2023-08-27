@@ -5,8 +5,6 @@ export class Payments {
         this.options = options
         this.template = templatePayments;
 
-        console.log(Payments.id)
-
         this.onClick = this.onClick.bind(this)
     }
 

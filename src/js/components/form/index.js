@@ -1,23 +1,16 @@
-import { getFields, storageController, getModal } from "../../utils";
-import {templateForm, templateModal as template} from "./template";
+import { Modal } from "../modal";
+import { getFields, storageController } from "../../utils";
+import {templateForm} from "./template";
 
-export class Form {
-    constructor({options}) {
+class Form extends Modal {
+    constructor({root, options}) {
+        super(root, options)
         this.options = options
-        this.form = null;
     }
 
     static id = 0
     static className = 'reg'
 
-    showModal(isError) {
-        const {onShow, onCLose} = getModal({root: this.form, template})
-
-        onShow({
-            text: isError ? isError : 'success !!!!', 
-            onClose: isError ? onCLose: this.options.update
-        })
-    }
 
     onSubmit(e) {
         e.preventDefault()
@@ -29,14 +22,16 @@ export class Form {
         
         const { isError } = onSave({ HashedID, name, lastName, email })
         
-        this.showModal(isError)
+        super.onOpen(isError)
     }
 
     toHtml() {
-        this.form = templateForm()
+        const form = templateForm()
 
-        this.form.addEventListener('submit', (e) => this.onSubmit(e))
+        form.addEventListener('submit', (e) => this.onSubmit(e))
 
-        return this.form
+        return form
     }
 }
+
+export default Form;
