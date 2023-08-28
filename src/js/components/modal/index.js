@@ -16,7 +16,7 @@ export class Modal {
 
         onShow({ 
             text: isError ? isError : 'success !!!!', 
-            onClose: isError ? onCLose: this.update//this.options.update
+            onClose: isError ? onCLose: this.update
         })
     }
 }
