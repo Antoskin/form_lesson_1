@@ -11,7 +11,7 @@ export class App {
     getRequiredComponent() {
         this.options.isRegistered && this.step === 0 && this.step ++;
 
-        return this.components.find(Component => Component.id === this.step)
+        return this.components[this.step]
     }    
 
     update() {

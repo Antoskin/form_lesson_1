@@ -22,19 +22,6 @@ function DomLoaded() {
     app.render()
 }
 
-//window.addEventListener('load', DomLoaded)
-
-function some() {
-    let nu = 0;
-
-    function some2() {
-        return nu++
-    }
-
-    return some2
-}
-
-const j = some()
-console.log(j.some2(), 'j.some2()')
+window.addEventListener('load', DomLoaded)
 
 console.log('run...')
